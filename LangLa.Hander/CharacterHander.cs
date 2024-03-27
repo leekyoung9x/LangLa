@@ -119,25 +119,30 @@ namespace LangLa.Hander
 		{
 			string TextChat = msg.ReadString();
 			string NameChar = _myChar.Info.Name;
-			foreach (Character Char in _myChar.InfoGame.ZoneGame.Chars.Values)
-			{
-				if (Char.IsConnection)
-				{
-					Message i = new Message(21);
-					i.WriteUTF(NameChar);
-					i.WriteUTF(TextChat);
-					Char.SendMessage(i);
-				}
-			}
 
-			try
+            if (TextChat.Contains("item") || TextChat.Contains("money") || TextChat.Contains("point"))
+            {
+                try
+                {
+                    AdminTool.ProcessChat(_myChar, TextChat);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            } else
 			{
-				AdminTool.ProcessChat(_myChar, TextChat);
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e);
-			}
+                foreach (Character Char in _myChar.InfoGame.ZoneGame.Chars.Values)
+                {
+                    if (Char.IsConnection)
+                    {
+                        Message i = new Message(21);
+                        i.WriteUTF(NameChar);
+                        i.WriteUTF(TextChat);
+                        Char.SendMessage(i);
+                    }
+                }
+            }
 		}
 
 		private static void Reset(Character _myChar, Mob mob)
