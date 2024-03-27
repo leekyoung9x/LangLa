@@ -122,6 +122,7 @@ namespace LangLa.Server
 		{
 			new Thread((ThreadStart)delegate
 			{
+				Util.ShowCustom("Server is ready now!", ConsoleColor.Green);
 				while (!IsStop)
 				{
 					string text3 = Console.ReadLine();

@@ -181,5 +181,19 @@ namespace LangLa.IO
 			Console.WriteLine(text);
 			Console.ResetColor();
 		}
+        
+		public static void ShowInfo(string text)
+		{
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.WriteLine(string.Format("[{0}] {1}", DateTime.Now.ToString(), text));
+			Console.ResetColor();
+		}
+		
+		public static void ShowCustom(string text, ConsoleColor color)
+		{
+			Console.ForegroundColor = color;
+			Console.WriteLine(string.Format("[{0}] {1}", DateTime.Now.ToString(), text));
+			Console.ResetColor();
+		}
 	}
 }

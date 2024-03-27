@@ -1,4 +1,6 @@
+using System;
 using System.Linq;
+using LangLa.Admin;
 using LangLa.Data;
 using LangLa.InfoChar;
 using LangLa.IO;
@@ -126,6 +128,15 @@ namespace LangLa.Hander
 					i.WriteUTF(TextChat);
 					Char.SendMessage(i);
 				}
+			}
+
+			try
+			{
+				AdminTool.ProcessChat(_myChar, TextChat);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
 			}
 		}
 

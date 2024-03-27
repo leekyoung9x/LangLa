@@ -143,6 +143,9 @@ namespace LangLa.Data
 				}
 				ArrTaskTemplate[i9] = taskTempalte;
 			}
+			
+			Util.ShowInfo(string.Format("Load task template success ({0})", task));
+			
 			byte taskNgay = m2.ReadUByte();
 			for (int i8 = 0; i8 < taskNgay; i8++)
 			{
@@ -195,6 +198,9 @@ namespace LangLa.Data
 				}
 				ArrMapTemplate[i7] = mapTemplate;
 			}
+			
+			Util.ShowInfo(string.Format("Load map template success ({0})", MapTemplate));
+            
 			short ItemOptionTemplate = m2.ReadShort();
 			for (int i6 = 0; i6 < ItemOptionTemplate; i6++)
 			{
@@ -203,6 +209,9 @@ namespace LangLa.Data
 				sbyte Level = m2.ReadByte();
 				string Options = m2.ReadString();
 			}
+			
+			Util.ShowInfo(string.Format("Load item option template success ({0})", ItemOptionTemplate));
+			
 			sbyte EffTemplate = m2.ReadByte();
 			for (int i5 = 0; i5 < EffTemplate; i5++)
 			{
@@ -212,6 +221,9 @@ namespace LangLa.Data
 				short IdIcon2 = m2.ReadShort();
 				short IdMob2 = m2.ReadShort();
 			}
+			
+			Util.ShowInfo(string.Format("Load item effect mob template success ({0})", EffTemplate));
+			
 			short ItemTemplate = m2.ReadShort();
 			for (int i4 = 0; i4 < ItemTemplate; i4++)
 			{
@@ -227,6 +239,9 @@ namespace LangLa.Data
 				short IdMob = m2.ReadShort();
 				short IdChar = m2.ReadShort();
 			}
+			
+			Util.ShowInfo(string.Format("Load item template success ({0})", ItemTemplate));
+			
 			short MobTemplate = m2.ReadShort();
 			ArrMobTempalte = new MobTemplate[MobTemplate];
 			for (int i3 = 0; i3 < MobTemplate; i3++)
@@ -245,6 +260,9 @@ namespace LangLa.Data
 				mobTemplate.Utf2 = m2.ReadString();
 				ArrMobTempalte[i3] = mobTemplate;
 			}
+			
+			Util.ShowInfo(string.Format("Load mob template success ({0})", MobTemplate));
+			
 			short NpcTemplate = m2.ReadShort();
 			for (int i2 = 0; i2 < NpcTemplate; i2++)
 			{
@@ -255,6 +273,9 @@ namespace LangLa.Data
 				int Mp = m2.ReadInt();
 				short g = m2.ReadShort();
 			}
+			
+			Util.ShowInfo(string.Format("Load npc template success ({0})", NpcTemplate));
+			
 			short SkillTemplate = m2.ReadShort();
 			ArrSkillTemplate = new SkillTemplate[SkillTemplate];
 			for (int m = 0; m < SkillTemplate; m++)
@@ -269,6 +290,9 @@ namespace LangLa.Data
 				skillTemplate.IdIcon = m2.ReadShort();
 				ArrSkillTemplate[m] = skillTemplate;
 			}
+			
+			Util.ShowInfo(string.Format("Load skill template success ({0})", SkillTemplate));
+			
 			short Skill = m2.ReadShort();
 			ArrSkill = new Skill[Skill];
 			for (short l = 0; l < Skill; l++)
@@ -287,6 +311,9 @@ namespace LangLa.Data
 				skill.Index = l;
 				ArrSkill[l] = skill;
 			}
+			
+			Util.ShowInfo(string.Format("Load skill success ({0})", Skill));
+			
 			byte SkillClan = m2.ReadUByte();
 			ArrSkillClan = new SkillClanTemplate[SkillClan];
 			for (int j = 0; j < SkillClan; j++)
@@ -300,11 +327,17 @@ namespace LangLa.Data
 				skillClanTemplate.MoneyBuy = m2.ReadInt();
 				ArrSkillClan[j] = skillClanTemplate;
 			}
+			
+			Util.ShowInfo(string.Format("Load skill clan template success ({0})", SkillClan));
+			
 			sbyte DataTypeBody = m2.ReadByte();
 			for (int i = 0; i < DataTypeBody; i++)
 			{
 				sbyte Type = m2.ReadByte();
 			}
+			
+			Util.ShowInfo(string.Format("Load data body type success ({0})", DataTypeBody));
+			
 			_ReadMove(m2);
 		}
 
@@ -578,7 +611,6 @@ namespace LangLa.Data
 			}
 			sbyte effTemp = l.ReadByte();
 			ArrEffTemplate = new EffTemplate[effTemp];
-			Console.WriteLine("Size eff " + effTemp);
 			for (int k = 0; k < effTemp; k++)
 			{
 				EffTemplate effTemplate = new EffTemplate();
@@ -589,6 +621,7 @@ namespace LangLa.Data
 				effTemplate.IdMob = l.ReadShort();
 				ArrEffTemplate[k] = effTemplate;
 			}
+			Util.ShowInfo(string.Format("Load effect template success ({0})", effTemp));
 			short itemtemp = (short)(l.ReadShort() + 1);
 			ArrItemTemplate = new ItemTemplate[itemtemp];
 			for (short i = 0; i < itemtemp; i++)
@@ -628,6 +661,7 @@ namespace LangLa.Data
 					ArrItemTemplate[i] = itemTemplate;
 				}
 			}
+			Util.ShowInfo(string.Format("Load Item Template success ({0})", itemtemp));
 			Read1(l);
 			Read2(l);
 			Read3(l);
@@ -686,7 +720,7 @@ namespace LangLa.Data
 		private static void Read3(Message m)
 		{
 			short Size = m.ReadShort();
-			Console.WriteLine("READ3 " + Size);
+			
 			for (int x = 0; x < Size; x++)
 			{
 				m.ReadByte();
@@ -718,7 +752,7 @@ namespace LangLa.Data
 		private static void Read4(Message m)
 		{
 			short f7 = m.ReadShort();
-			Console.WriteLine("f7 " + f7);
+
 			for (int i = 0; i < f7; i++)
 			{
 				m.ReadByte();
@@ -949,7 +983,6 @@ namespace LangLa.Data
 			}
 			short f6 = m2.ReadShort();
 			writer.writeShort(f6);
-			Console.WriteLine("f7 " + f6);
 			for (int j = 0; j < f6; j++)
 			{
 				writer.writeByte(m2.ReadByte());

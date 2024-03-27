@@ -128,7 +128,7 @@ namespace LangLa.SqlConnection
 				}
 			}
 			GiaTocManager.ID_GIA_TOC = Id++;
-			Util.ShowLog("GIA TOC SIZE " + GiaTocManager.ListGiaTocs.Values.Count);
+			Util.ShowInfo(string.Format("Load gia toc success ({0})", GiaTocManager.ListGiaTocs.Values.Count));
 		}
 
 		private static sbyte SetLevel(long exp)
@@ -276,6 +276,11 @@ namespace LangLa.SqlConnection
 				cmd?.Dispose();
 				read?.DisposeAsync();
 			}
+			Util.ShowInfo(string.Format("Load top level success ({0})", TopManager.InfoTopLevels.Count));
+			Util.ShowInfo(string.Format("Load top tai phu success ({0})", TopManager.InfoTopTaiPhus.Count));
+			Util.ShowInfo(string.Format("Load top cuong hoa success ({0})", TopManager.InfoTopCuongHoa.Count));
+			Util.ShowInfo(string.Format("Load top nhi dong success ({0})", TopManager.InfoTopNhiDong.Count));
+			Util.ShowInfo(string.Format("Load top nap success ({0})", TopManager.InfoTopNapNhieu.Count));
 			LoadTopGiaToc();
 		}
 
@@ -354,6 +359,8 @@ namespace LangLa.SqlConnection
 			TopManager.InfoTopGiaToc = (from s in infoTops2
 				orderby s.LevelGiaToc descending, s.ExpGiaToc descending
 				select s).ToList();
+			
+			Util.ShowInfo(string.Format("Load top gia toc success ({0})", TopManager.InfoTopGiaToc.Count));
 		}
 
 		public static void UpdateRoleThanhVien(string Name)
@@ -543,7 +550,7 @@ namespace LangLa.SqlConnection
 				cmd?.Dispose();
 				read?.DisposeAsync();
 			}
-			Util.ShowLog("SHOP SIZE " + DataShop.ShopTemplates.Count);
+			Util.ShowInfo(string.Format("Load shop success ({0})", DataShop.ShopTemplates.Count));
 		}
 
 		private static void LoadShopTxt()
