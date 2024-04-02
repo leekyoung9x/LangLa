@@ -128,7 +128,7 @@ namespace LangLa.Hander
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e);
+	                Util.ShowErr(e);
                 }
             } else
 			{
