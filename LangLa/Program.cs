@@ -1,11 +1,8 @@
 ﻿using System;
 using LangLa.Data;
-using LangLa.EventServer;
 using LangLa.Model;
-using LangLa.Server;
 using LangLa.SqlConnection;
 using Microsoft.Extensions.Configuration;
-using System.Configuration;
 using LangLa.IO;
 
 namespace LangLa
@@ -21,6 +18,7 @@ namespace LangLa
             Setup.BuildConfig(ref Configuration);
             AppSettings = Setup.GetConfigurationServer(Configuration);
             DataServer.DataGame();
+            ConnectionItem.LoadItemTemplate();
             ConnectionDB.LoadGiaToc();
             ConnectionDB.LoadShop();
             ConnectionDB.LoadTop();

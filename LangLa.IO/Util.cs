@@ -164,7 +164,7 @@ namespace LangLa.IO
 		public static void ShowErr(Exception e)
 		{
 			Console.ForegroundColor = ConsoleColor.Red;
-			Console.WriteLine(e.StackTrace);
+			Console.WriteLine(e.ToString());
 			Console.ResetColor();
 		}
 
