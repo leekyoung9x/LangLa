@@ -519,7 +519,7 @@ namespace LangLa.InfoChar
 				{
 					if (it != null)
 					{
-						Util.ShowWarring("ITEM LOI " + DataServer.ArrItemTemplate[it.Id].Name + " OPTIONS " + it.Options);
+						Util.ShowWarring("ITEM LOI " + DataServer.ArrItemTemplate[it.Id].name + " OPTIONS " + it.Options);
 					}
 					else
 					{

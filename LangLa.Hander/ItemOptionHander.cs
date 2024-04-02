@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using LangLa.Data;
 using LangLa.IO;
+using LangLa.Model;
 using LangLa.Server;
 using LangLa.SupportOOP;
 using LangLa.Template;
@@ -147,20 +148,20 @@ namespace LangLa.Hander
 		public static void AddOptionCaiTrang(Item item, Item[] item1)
 		{
 			List<ItemOption> Optiuons = new List<ItemOption>();
-			string NameItem = DataServer.ArrItemTemplate[item.Id].Name;
+			string NameItem = DataServer.ArrItemTemplate[item.Id].name;
 			List<ItemOption> OptiosBack = new List<ItemOption>();
 			StringBuilder stringBuilder = new StringBuilder();
 			StringBuilder stringBuilder3 = new StringBuilder();
 			for (int i = 0; i < item1.Length; i++)
 			{
-				ItemTemplate itemTemplate = DataServer.ArrItemTemplate[item1[i].Id];
-				if (!itemTemplate.Name.Equals(NameItem))
+				item_template itemTemplate = DataServer.ArrItemTemplate[item1[i].Id];
+				if (!itemTemplate.name.Equals(NameItem))
 				{
 					if (i > 0)
 					{
 						stringBuilder.Append(";");
 					}
-					ItemOptionTemplate itemOptionTemplate = DataServer.ArrItemOptionTemplate.FirstOrDefault((ItemOptionTemplate s) => s.Name.Equals(itemTemplate.Name));
+					ItemOptionTemplate itemOptionTemplate = DataServer.ArrItemOptionTemplate.FirstOrDefault((ItemOptionTemplate s) => s.Name.Equals(itemTemplate.name));
 					stringBuilder.Append(itemOptionTemplate.Id).Append(",").Append(0);
 				}
 				if (i > 0)
@@ -278,20 +279,20 @@ namespace LangLa.Hander
 				{
 					continue;
 				}
-				ItemTemplate itemTemplate = DataServer.ArrItemTemplate[item.Id];
-				if (itemTemplate.LevelNeed / 10 == 4 && itemOptionTemplate.Type == 6)
+				item_template itemTemplate = DataServer.ArrItemTemplate[item.Id];
+				if (itemTemplate.level_need / 10 == 4 && itemOptionTemplate.Type == 6)
 				{
 					stringBuilder.Append(";").Append("47,150");
 					var6 = true;
 				}
 				if (itemOptionTemplate.Type == 7)
 				{
-					if (itemTemplate.LevelNeed / 10 >= 5)
+					if (itemTemplate.level_need / 10 >= 5)
 					{
 						stringBuilder.Append(";").Append("252,5").Append(";")
 							.Append(var4[item.IdClass]);
 					}
-					if (itemTemplate.LevelNeed / 10 >= 6)
+					if (itemTemplate.level_need / 10 >= 6)
 					{
 						stringBuilder.Append(";").Append("286,300");
 					}
@@ -306,17 +307,17 @@ namespace LangLa.Hander
 		{
 			item.IsLock = true;
 			ItemOption[] var2 = item.L(IsSet: true);
-			ItemTemplate itemTemplate = DataServer.ArrItemTemplate[item.Id];
+			item_template itemTemplate = DataServer.ArrItemTemplate[item.Id];
 			string[] var3 = null;
-			if (itemTemplate.Type == 8)
+			if (itemTemplate.type == 8)
 			{
 				var3 = new string[4] { "161,85", "173,20", "253,2000", "159,0" };
 			}
-			else if (itemTemplate.Type == 2)
+			else if (itemTemplate.type == 2)
 			{
 				var3 = new string[4] { "162,1", "173,20", "253,2000", "159,0" };
 			}
-			else if (itemTemplate.Type == 7)
+			else if (itemTemplate.type == 7)
 			{
 				var3 = new string[4] { "167,70", "173,20", "253,2000", "159,0" };
 			}
@@ -349,7 +350,7 @@ namespace LangLa.Hander
 				{
 					continue;
 				}
-				if (itemTemplate.LevelNeed / 10 == 4 && itemOptionTemplate.Type == 6)
+				if (itemTemplate.level_need / 10 == 4 && itemOptionTemplate.Type == 6)
 				{
 					stringBuilder.Append(";").Append("42,20");
 					var5 = true;
@@ -358,13 +359,13 @@ namespace LangLa.Hander
 				{
 					continue;
 				}
-				if (itemTemplate.LevelNeed / 10 >= 5)
+				if (itemTemplate.level_need / 10 >= 5)
 				{
 					stringBuilder.Append(";").Append(var3[2]);
 				}
-				if (itemTemplate.LevelNeed / 10 >= 6)
+				if (itemTemplate.level_need / 10 >= 6)
 				{
-					switch (itemTemplate.Type)
+					switch (itemTemplate.type)
 					{
 					case 6:
 						stringBuilder.Append(";").Append("323,200");
@@ -390,17 +391,17 @@ namespace LangLa.Hander
 		{
 			item.IsLock = true;
 			ItemOption[] var2 = item.L(IsSet: true);
-			ItemTemplate itemTemplate = DataServer.ArrItemTemplate[item.Id];
+			item_template itemTemplate = DataServer.ArrItemTemplate[item.Id];
 			string[] var3 = null;
-			if (itemTemplate.Type == 0)
+			if (itemTemplate.type == 0)
 			{
 				var3 = new string[4] { "256,4", "173,20", "253,2000", "164,0" };
 			}
-			else if (itemTemplate.Type == 4)
+			else if (itemTemplate.type == 4)
 			{
 				var3 = new string[4] { "257,4", "173,20", "253,2000", "164,0" };
 			}
-			else if (itemTemplate.Type == 3)
+			else if (itemTemplate.type == 3)
 			{
 				var3 = new string[4] { "258,25", "173,20", "253,2000", "164,0" };
 			}
@@ -433,7 +434,7 @@ namespace LangLa.Hander
 				{
 					continue;
 				}
-				if (itemTemplate.LevelNeed / 10 == 4 && itemOptionTemplate.Type == 6)
+				if (itemTemplate.level_need / 10 == 4 && itemOptionTemplate.Type == 6)
 				{
 					stringBuilder.Append(";").Append("42,20");
 					var5 = true;
@@ -442,13 +443,13 @@ namespace LangLa.Hander
 				{
 					continue;
 				}
-				if (itemTemplate.LevelNeed / 10 >= 5)
+				if (itemTemplate.level_need / 10 >= 5)
 				{
 					stringBuilder.Append(";").Append(var3[2]);
 				}
-				if (itemTemplate.LevelNeed / 10 >= 6)
+				if (itemTemplate.level_need / 10 >= 6)
 				{
-					switch (itemTemplate.Type)
+					switch (itemTemplate.type)
 					{
 					case 6:
 						stringBuilder.Append(";").Append("323,200");
@@ -474,17 +475,17 @@ namespace LangLa.Hander
 		{
 			item.IsLock = true;
 			ItemOption[] var2 = item.L(IsSet: true);
-			ItemTemplate itemTemplate = DataServer.ArrItemTemplate[item.Id];
+			item_template itemTemplate = DataServer.ArrItemTemplate[item.Id];
 			string[] var3 = null;
-			if (itemTemplate.Type == 5)
+			if (itemTemplate.type == 5)
 			{
 				var3 = new string[4] { "166,60", "173,20", "253,2000", "163,0" };
 			}
-			else if (itemTemplate.Type == 6)
+			else if (itemTemplate.type == 6)
 			{
 				var3 = new string[4] { "174,2", "173,20", "253,2000", "163,0" };
 			}
-			else if (itemTemplate.Type == 9)
+			else if (itemTemplate.type == 9)
 			{
 				var3 = new string[4] { "255,2", "173,20", "253,2000", "163,0" };
 			}
@@ -517,7 +518,7 @@ namespace LangLa.Hander
 				{
 					continue;
 				}
-				if (itemTemplate.LevelNeed / 10 == 4 && itemOptionTemplate.Type == 6)
+				if (itemTemplate.level_need / 10 == 4 && itemOptionTemplate.Type == 6)
 				{
 					stringBuilder.Append(";").Append("42,20");
 					var5 = true;
@@ -526,13 +527,13 @@ namespace LangLa.Hander
 				{
 					continue;
 				}
-				if (itemTemplate.LevelNeed / 10 >= 5)
+				if (itemTemplate.level_need / 10 >= 5)
 				{
 					stringBuilder.Append(";").Append(var3[2]);
 				}
-				if (itemTemplate.LevelNeed / 10 >= 6)
+				if (itemTemplate.level_need / 10 >= 6)
 				{
-					switch (itemTemplate.Type)
+					switch (itemTemplate.type)
 					{
 					case 6:
 						stringBuilder.Append(";").Append("323,200");
@@ -558,44 +559,44 @@ namespace LangLa.Hander
 		{
 			ItemOption[] var2 = item.L(IsSet: true);
 			string[] var3 = null;
-			ItemTemplate itemTemplate = DataServer.ArrItemTemplate[item.Id];
-			if (itemTemplate.Type == 5)
+			item_template itemTemplate = DataServer.ArrItemTemplate[item.Id];
+			if (itemTemplate.type == 5)
 			{
 				var3 = new string[2] { "259,10", "326,25" };
 			}
-			else if (itemTemplate.Type == 6)
+			else if (itemTemplate.type == 6)
 			{
 				var3 = new string[2] { "253,3500", "323,45" };
 			}
-			else if (itemTemplate.Type == 9)
+			else if (itemTemplate.type == 9)
 			{
 				var3 = new string[2] { "261,10", "304,25" };
 			}
-			else if (itemTemplate.Type == 0)
+			else if (itemTemplate.type == 0)
 			{
 				var3 = new string[2] { "253,3500", "304,25" };
 			}
-			else if (itemTemplate.Type == 4)
+			else if (itemTemplate.type == 4)
 			{
 				var3 = new string[2] { "253,3500", "323,45" };
 			}
-			else if (itemTemplate.Type == 3)
+			else if (itemTemplate.type == 3)
 			{
 				var3 = new string[2] { "263,10", "304,25" };
 			}
-			else if (itemTemplate.Type == 8)
+			else if (itemTemplate.type == 8)
 			{
 				var3 = new string[2] { "262,10", "324,30" };
 			}
-			else if (itemTemplate.Type == 2)
+			else if (itemTemplate.type == 2)
 			{
 				var3 = new string[2] { "253,3500", "323,45" };
 			}
-			else if (itemTemplate.Type == 7)
+			else if (itemTemplate.type == 7)
 			{
 				var3 = new string[2] { "260,10", "326,25" };
 			}
-			else if (itemTemplate.Type == 1)
+			else if (itemTemplate.type == 1)
 			{
 				var3 = new string[2] { "252,5", "304,45" };
 			}
@@ -617,25 +618,25 @@ namespace LangLa.Hander
 					stringBuilder.Append(var2[var5].g());
 				}
 			}
-			if (itemTemplate.LevelNeed / 10 == 4)
+			if (itemTemplate.level_need / 10 == 4)
 			{
 				stringBuilder.Append(";").Append(var3[0]);
 				ValueTanCongLucDao = 6;
 			}
-			if (itemTemplate.LevelNeed / 10 >= 6 && !var4)
+			if (itemTemplate.level_need / 10 >= 6 && !var4)
 			{
 				stringBuilder.Append(";").Append(Util.NextInt(350, 359) + ",40");
 				ValueTanCongLucDao = 8;
 				var4 = true;
 			}
-			if (itemTemplate.LevelNeed / 10 >= 5 && !var4)
+			if (itemTemplate.level_need / 10 >= 5 && !var4)
 			{
 				stringBuilder.Append(";").Append(var3[1]);
 				ValueTanCongLucDao = 7;
 			}
 			stringBuilder.Append(";").Append("361," + ValueTanCongLucDao);
 			item.Options = stringBuilder.ToString();
-			LangLa.Server.Server.SendThongBaoFromServer("Chúc mừng nhẫn giả " + Name + " vừa cường hóa " + itemTemplate.Name + " trở thành trang bị Lục đạo " + ValueTanCongLucDao + "% tấn công cơ bản");
+			LangLa.Server.Server.SendThongBaoFromServer("Chúc mừng nhẫn giả " + Name + " vừa cường hóa " + itemTemplate.name + " trở thành trang bị Lục đạo " + ValueTanCongLucDao + "% tấn công cơ bản");
 		}
 	}
 }

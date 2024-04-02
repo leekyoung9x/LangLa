@@ -1,5 +1,6 @@
 using System.Linq;
 using LangLa.Data;
+using LangLa.Model;
 using LangLa.SupportOOP;
 
 namespace LangLa.Template
@@ -75,13 +76,13 @@ namespace LangLa.Template
 				{
 					it.Options = InfoItem[6];
 				}
-				ItemTemplate itemTemplate = DataServer.ArrItemTemplate[it.Id];
-				if (itemTemplate.GioiTinh != 2 && itemTemplate.GioiTinh != GioiTinh)
+				item_template itemTemplate = DataServer.ArrItemTemplate[it.Id];
+				if (itemTemplate.gioi_tinh != 2 && itemTemplate.gioi_tinh != GioiTinh)
 				{
-					ItemTemplate itemTemplate2 = DataServer.ArrItemTemplate.FirstOrDefault((ItemTemplate s) => s.GioiTinh == GioiTinh && s.Type == it.Type && s.LevelNeed == itemTemplate.LevelNeed);
+					item_template itemTemplate2 = DataServer.ArrItemTemplate.FirstOrDefault(s => s.gioi_tinh == GioiTinh && s.type == it.Type && s.level_need == itemTemplate.level_need);
 					if (itemTemplate2 != null)
 					{
-						it.Id = itemTemplate2.Id;
+						it.Id = itemTemplate2.id;
 					}
 				}
 				if (it.Type == 13)

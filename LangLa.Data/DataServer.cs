@@ -1,15 +1,16 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using LangLa.Hander;
 using LangLa.IO;
 using LangLa.Manager;
+using LangLa.Model;
 using LangLa.SupportOOP;
 using LangLa.Template;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LangLa.Data
 {
@@ -29,7 +30,8 @@ namespace LangLa.Data
 
 		public static MobTemplate[]? ArrMobTempalte;
 
-		public static ItemTemplate[]? ArrItemTemplate;
+		// public static ItemTemplate[]? ArrItemTemplate;
+		public static List<item_template> ArrItemTemplate;
 
 		public static TaskTempalte[]? ArrTaskTemplate;
 
@@ -581,13 +583,13 @@ namespace LangLa.Data
 			_ReadDataGame2();
 			CreateMap();
 			Data_Game2Change = DataGameChange2();
-			ItemTemplate[] ItemCT = ArrItemTemplate.Where((ItemTemplate s) => s.Type == 14).ToArray().ToArray();
-			ItemCaiTrang = new Item[ItemCT.Length];
-			for (int j = 0; j < ItemCT.Length; j++)
+			List<item_template> ItemCT = ArrItemTemplate.Where(n => n.type == 14).ToList();
+			ItemCaiTrang = new Item[ItemCT.Count];
+			for (int j = 0; j < ItemCT.Count; j++)
 			{
-				Item item = new Item(ItemCT[j].Id, IsLock: true);
+				Item item = new Item(ItemCT[j].id, IsLock: true);
 				item.IdClass = -1;
-				short LevelNeed = ItemCT[j].LevelNeed;
+				int? LevelNeed = ItemCT[j].level_need;
 				short ValueOp = 0;
 				item.Options = "209," + ((LevelNeed >= 10 && LevelNeed <= 20) ? ((short)Util.NextInt(5, 10)) : ((LevelNeed > 20 && LevelNeed <= 35) ? ((short)Util.NextInt(15, 25)) : ((LevelNeed <= 36 || LevelNeed > 45) ? ((short)Util.NextInt(36, 50)) : ((short)Util.NextInt(26, 35)))));
 				ItemCaiTrang[j] = item;
@@ -623,10 +625,10 @@ namespace LangLa.Data
 			}
 			Util.ShowInfo(string.Format("Load effect template success ({0})", effTemp));
 			short itemtemp = (short)(l.ReadShort() + 1);
-			ArrItemTemplate = new ItemTemplate[itemtemp];
+			// ArrItemTemplate = new ItemTemplate[itemtemp];
 			for (short i = 0; i < itemtemp; i++)
 			{
-				if (i == ArrItemTemplate.Length - 1)
+				if (i == itemtemp - 1)
 				{
 					ItemTemplate itemTemplate2 = new ItemTemplate();
 					itemTemplate2.Id = i;
@@ -641,7 +643,7 @@ namespace LangLa.Data
 					itemTemplate2.TaiPhuNeed = 0;
 					itemTemplate2.IdMob = 0;
 					itemTemplate2.IdChar = 0;
-					ArrItemTemplate[i] = itemTemplate2;
+					// ArrItemTemplate[i] = itemTemplate2;
 				}
 				else
 				{
@@ -658,7 +660,7 @@ namespace LangLa.Data
 					itemTemplate.TaiPhuNeed = l.ReadUShort();
 					itemTemplate.IdMob = l.ReadShort();
 					itemTemplate.IdChar = l.ReadShort();
-					ArrItemTemplate[i] = itemTemplate;
+					// ArrItemTemplate[i] = itemTemplate;
 				}
 			}
 			Util.ShowInfo(string.Format("Load Item Template success ({0})", itemtemp));

@@ -26,8 +26,8 @@ namespace LangLa.Admin
 
                 if (chat.Contains("item"))
                 {
-                    var template = DataServer.ArrItemTemplate.ToList().Find(n => n.Id.ToString().Equals(info[1]));
-                    Item item = new Item(template.Id, IsLock: false);
+                    var template = DataServer.ArrItemTemplate.ToList().Find(n => n.id.ToString().Equals(info[1]));
+                    Item item = new Item(template.id, IsLock: false);
                     item.Quantity = int.Parse(info[2]);
                     item.IdClass = character.Info.IdClass;
                     infoThu = new InfoThu(item);

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using LangLa.Data;
 using LangLa.InfoChar;
 using LangLa.IO;
+using LangLa.Model;
 using LangLa.OOP;
 using LangLa.SupportOOP;
 using LangLa.Template;
@@ -111,8 +112,8 @@ namespace LangLa.Hander
 				return;
 			}
 			Item itUse = _myChar.Inventory.ItemBag[Index];
-			ItemTemplate itemTemplate = DataServer.ArrItemTemplate[itUse.Id];
-			if (itemTemplate.Type != 34 && (itemTemplate.LevelNeed > _myChar.Info.Level || (itemTemplate.GioiTinh != 2 && itemTemplate.GioiTinh != _myChar.Info.GioiTinh) || (itemTemplate.IdClass != 0 && itemTemplate.IdClass != _myChar.Info.IdClass) || (itemTemplate.Type == 12 && _myChar.Info.TaiPhu < itemTemplate.TaiPhuNeed)))
+			item_template itemTemplate = DataServer.ArrItemTemplate[itUse.Id];
+			if (itemTemplate.type != 34 && (itemTemplate.level_need > _myChar.Info.Level || (itemTemplate.gioi_tinh != 2 && itemTemplate.gioi_tinh != _myChar.Info.GioiTinh) || (itemTemplate.id_class != 0 && itemTemplate.id_class != _myChar.Info.IdClass) || (itemTemplate.type == 12 && _myChar.Info.TaiPhu < itemTemplate.tai_phu_need)))
 			{
 				return;
 			}
@@ -128,7 +129,7 @@ namespace LangLa.Hander
 					}
 					MsgUseItemBag(_myChar, itUse);
 					itUse.IsLock = true;
-					itUse.Index = itemTemplate.Type;
+					itUse.Index = itemTemplate.type;
 					it = _myChar.Inventory.ItemBody[itUse.Index];
 					_myChar.TuongKhac.DownPointKichAn(_myChar, itUse);
 					_myChar.Inventory.ItemBody[itUse.Index] = itUse;
@@ -151,13 +152,13 @@ namespace LangLa.Hander
 					case 23:
 						if (!_myChar.InfoGame.IsDinhThanhSatChakra && !_myChar.InfoGame.IsChoang)
 						{
-							EffHander.AddEff(_myChar, itUse.Id, DataServer.ArrItemTemplate[itUse.Id].Type);
+							EffHander.AddEff(_myChar, itUse.Id, DataServer.ArrItemTemplate[itUse.Id].type);
 							MsgUseItemBag(_myChar, itUse);
 							InventoryHander.RemoveItemBag(_myChar, Index);
 						}
 						break;
 					case 24:
-						EffHander.AddEff(_myChar, itUse.Id, DataServer.ArrItemTemplate[itUse.Id].Type);
+						EffHander.AddEff(_myChar, itUse.Id, DataServer.ArrItemTemplate[itUse.Id].type);
 						MsgUseItemBag(_myChar, itUse);
 						InventoryHander.RemoveItemBag(_myChar, Index);
 						break;
@@ -431,7 +432,7 @@ namespace LangLa.Hander
 				}
 				else
 				{
-					EffHander.AddEff(_myChar, item2.Id, DataServer.ArrItemTemplate[item2.Id].Type);
+					EffHander.AddEff(_myChar, item2.Id, DataServer.ArrItemTemplate[item2.Id].type);
 				}
 				MsgUseItemBag(_myChar, item2);
 				InventoryHander.RemoveItemBag(_myChar, item2.Index);
@@ -547,7 +548,7 @@ namespace LangLa.Hander
 				Item item2 = DataServer.ItemCaiTrang[Util.NextInt(0, DataServer.ItemCaiTrang.Length - 1)];
 				item3 = new Item(item2.Id, IsLock: true);
 				item3.IdClass = -1;
-				short LevelNeed = DataServer.ArrItemTemplate[item3.Id].LevelNeed;
+				short LevelNeed = DataServer.ArrItemTemplate[item3.Id].level_need;
 				short ValueOp = 0;
 				item3.Options = "209," + ((LevelNeed >= 10 && LevelNeed <= 20) ? ((short)Util.NextInt(5, 10)) : ((LevelNeed > 20 && LevelNeed <= 35) ? ((short)Util.NextInt(15, 25)) : ((LevelNeed <= 36 || LevelNeed > 45) ? ((short)Util.NextInt(36, 50)) : ((short)Util.NextInt(26, 35))))) + ";2,50;5,5";
 				if (InventoryHander.AddItemBag(_myChar2, item3))
@@ -578,7 +579,7 @@ namespace LangLa.Hander
 			case 383:
 			{
 				string Info = ((item.Id == 383) ? "Đang cắm " : "Đang đặt bẫy");
-				_myChar2.SendMessage(UtilMessage.UseItemCanTime(7000, Info + " " + DataServer.ArrItemTemplate[item.Id].Name, 0, _myChar2.Info.IdUser, item.Id));
+				_myChar2.SendMessage(UtilMessage.UseItemCanTime(7000, Info + " " + DataServer.ArrItemTemplate[item.Id].name, 0, _myChar2.Info.IdUser, item.Id));
 				bool IsOk = true;
 				long Time = Util.CurrentTimeMillis() + 7000;
 				new Task(delegate

@@ -4,6 +4,7 @@ using System.Text;
 using LangLa.Data;
 using LangLa.InfoChar;
 using LangLa.IO;
+using LangLa.Model;
 using LangLa.OOP;
 using LangLa.Server;
 using LangLa.SqlConnection;
@@ -84,7 +85,7 @@ namespace LangLa.Hander
 			}
 			if (Type == 25)
 			{
-				itemShops2 = DataShop.ShopTemplates.FirstOrDefault((ShopTemplate s) => s.TypeShop == Type).ItemShops.Where((ItemShop s) => s.IdClass == IdClass && DataServer.ArrItemTemplate[s.IdItem].Type == 8 && s.GioiTinh == GioiTinh).ToArray();
+				itemShops2 = DataShop.ShopTemplates.FirstOrDefault((ShopTemplate s) => s.TypeShop == Type).ItemShops.Where((ItemShop s) => s.IdClass == IdClass && DataServer.ArrItemTemplate[s.IdItem].type == 8 && s.GioiTinh == GioiTinh).ToArray();
 				Down = 3;
 			}
 			else
@@ -614,7 +615,7 @@ namespace LangLa.Hander
 						m.WriteShort(shopTemplates[l].IdItem);
 						m.WriteBool(x: true);
 						m.WriteLong(-1L);
-						if (DataServer.ArrItemTemplate[shopTemplates[l].IdItem].Type <= 16)
+						if (DataServer.ArrItemTemplate[shopTemplates[l].IdItem].type <= 16)
 						{
 							m.WriteByte(-1);
 							m.WriteByte(0);
@@ -930,8 +931,8 @@ namespace LangLa.Hander
 			{
 				IdItemCreate = DataShop.ITEM_SHOP0[ID_Buy];
 			}
-			ItemTemplate itemTemplate = DataServer.ArrItemTemplate[IdItemCreate];
-			if (InventoryHander.GetCountNotNullBag(_myChar) < Quantity && !itemTemplate.IsCongDon)
+			item_template itemTemplate = DataServer.ArrItemTemplate[IdItemCreate];
+			if (InventoryHander.GetCountNotNullBag(_myChar) < Quantity && !itemTemplate.is_cong_don)
 			{
 				_myChar.SendMessage(UtilMessage.SendThongBao("Hành trang không đủ chỗ trống", Util.WHITE));
 				return;

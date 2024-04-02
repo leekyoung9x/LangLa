@@ -168,7 +168,7 @@ namespace LangLa.Hander
 				j.WriteShort(short.Parse(Info[0]));
 				j.WriteBool(x: true);
 				j.WriteLong(-1L);
-				if (DataServer.ArrItemTemplate[IdItem].Type <= 16)
+				if (DataServer.ArrItemTemplate[IdItem].type <= 16)
 				{
 					j.WriteByte(-1);
 					j.WriteByte(0);

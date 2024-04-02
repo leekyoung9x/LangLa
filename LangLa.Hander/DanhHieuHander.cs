@@ -16,7 +16,7 @@ namespace LangLa.Hander
 		public static void AddDanhHieu(Character _myChar, Item item)
 		{
 			InfoDanhHieu infoDanhHieu = new InfoDanhHieu();
-			string[] Name = DataServer.ArrItemTemplate[item.Id].Name.Split(" ");
+			string[] Name = DataServer.ArrItemTemplate[item.Id].name.Split(" ");
 			infoDanhHieu.Id = item.Id;
 			for (int i = 2; i < Name.Length; i++)
 			{

@@ -8,6 +8,7 @@ using LangLa.Data;
 using LangLa.InfoChar;
 using LangLa.IO;
 using LangLa.Manager;
+using LangLa.Model;
 using LangLa.Server;
 using LangLa.SupportOOP;
 using LangLa.Template;
@@ -637,11 +638,11 @@ namespace LangLa.SqlConnection
 					for (k = 1; k <= 5; k++)
 					{
 						m = 0;
-						DataServer.ArrItemTemplate.Where((ItemTemplate s) => s.Type == 1 && s.IdClass == k).ToList().ForEach(delegate(ItemTemplate s)
+						DataServer.ArrItemTemplate.Where(s => s.type == 1 && s.id_class == k).ToList().ForEach(delegate(item_template s)
 						{
 							ItemShop itemShop9 = new ItemShop();
 							ItemShop itemShop10 = new ItemShop();
-							itemShop9.IdItem = s.Id;
+							itemShop9.IdItem = s.id;
 							itemShop9.IdBuy = 888;
 							itemShop10.GioiTinh = 2;
 							itemShop9.IdClass = k;
@@ -658,16 +659,16 @@ namespace LangLa.SqlConnection
 					break;
 				}
 				case 18:
-					shopTemplate3.ItemShops = itemShops2.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].Type == 12).ToList();
+					shopTemplate3.ItemShops = itemShops2.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].type == 12).ToList();
 					break;
 				case 30:
-					shopTemplate3.ItemShops = itemShops2.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].Type == 15).ToList();
+					shopTemplate3.ItemShops = itemShops2.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].type == 15).ToList();
 					break;
 				case 37:
-					shopTemplate3.ItemShops = itemShops2.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].Type == 10).ToList();
+					shopTemplate3.ItemShops = itemShops2.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].type == 10).ToList();
 					break;
 				case 38:
-					shopTemplate3.ItemShops = itemShops2.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].Type == 14).ToList();
+					shopTemplate3.ItemShops = itemShops2.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].type == 14).ToList();
 					break;
 				default:
 					shopTemplate3.ItemShops = itemShops2;
@@ -731,11 +732,11 @@ namespace LangLa.SqlConnection
 					for (j = 1; j <= 5; j++)
 					{
 						l = 0;
-						DataServer.ArrItemTemplate.Where((ItemTemplate s) => s.Type == 1 && s.IdClass == j).ToList().ForEach(delegate(ItemTemplate s)
+						DataServer.ArrItemTemplate.Where(s => s.type == 1 && s.id_class == j).ToList().ForEach(delegate(item_template s)
 						{
 							ItemShop itemShop7 = new ItemShop();
 							ItemShop itemShop8 = new ItemShop();
-							itemShop7.IdItem = s.Id;
+							itemShop7.IdItem = s.id;
 							itemShop7.IdBuy = 888;
 							itemShop7.GioiTinh = 2;
 							itemShop7.IdClass = j;
@@ -752,36 +753,36 @@ namespace LangLa.SqlConnection
 					break;
 				}
 				case 21:
-					shopTemplate2.ItemShops = itemShops.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].Type == 0).ToList();
-					shopTemplate2.ItemShops.AddRange(itemShopGirls.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].Type == 0));
+					shopTemplate2.ItemShops = itemShops.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].type == 0).ToList();
+					shopTemplate2.ItemShops.AddRange(itemShopGirls.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].type == 0));
 					break;
 				case 22:
-					shopTemplate2.ItemShops = itemShops.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].Type == 2).ToList();
-					shopTemplate2.ItemShops.AddRange(itemShopGirls.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].Type == 2));
+					shopTemplate2.ItemShops = itemShops.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].type == 2).ToList();
+					shopTemplate2.ItemShops.AddRange(itemShopGirls.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].type == 2));
 					break;
 				case 23:
-					shopTemplate2.ItemShops = itemShops.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].Type == 4).ToList();
-					shopTemplate2.ItemShops.AddRange(itemShopGirls.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].Type == 4));
+					shopTemplate2.ItemShops = itemShops.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].type == 4).ToList();
+					shopTemplate2.ItemShops.AddRange(itemShopGirls.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].type == 4));
 					break;
 				case 24:
-					shopTemplate2.ItemShops = itemShops.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].Type == 6).ToList();
-					shopTemplate2.ItemShops.AddRange(itemShopGirls.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].Type == 6));
+					shopTemplate2.ItemShops = itemShops.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].type == 6).ToList();
+					shopTemplate2.ItemShops.AddRange(itemShopGirls.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].type == 6));
 					break;
 				case 25:
-					shopTemplate2.ItemShops = itemShops.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].Type == 8).ToList();
-					shopTemplate2.ItemShops.AddRange(itemShopGirls.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].Type == 8));
+					shopTemplate2.ItemShops = itemShops.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].type == 8).ToList();
+					shopTemplate2.ItemShops.AddRange(itemShopGirls.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].type == 8));
 					break;
 				case 26:
-					shopTemplate2.ItemShops = itemShops.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].Type == 3).ToList();
+					shopTemplate2.ItemShops = itemShops.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].type == 3).ToList();
 					break;
 				case 27:
-					shopTemplate2.ItemShops = itemShops.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].Type == 5).ToList();
+					shopTemplate2.ItemShops = itemShops.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].type == 5).ToList();
 					break;
 				case 28:
-					shopTemplate2.ItemShops = itemShops.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].Type == 7).ToList();
+					shopTemplate2.ItemShops = itemShops.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].type == 7).ToList();
 					break;
 				case 29:
-					shopTemplate2.ItemShops = itemShops.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].Type == 9).ToList();
+					shopTemplate2.ItemShops = itemShops.Where((ItemShop s) => DataServer.ArrItemTemplate[s.IdItem].type == 9).ToList();
 					break;
 				}
 				DataShop.ShopTemplates.Add(shopTemplate2);
@@ -811,13 +812,13 @@ namespace LangLa.SqlConnection
 					{
 						j *= MaxSize;
 					}
-					DataServer.ArrItemTemplate.Where((ItemTemplate s) => s.Type == 1 && s.IdClass == i).ToList().ForEach(delegate(ItemTemplate s)
+					DataServer.ArrItemTemplate.Where(s => s.type == 1 && s.id_class == i).ToList().ForEach(delegate(item_template s)
 					{
 						cmd.Parameters.AddWithValue("@1", 8);
 						cmd.Parameters.AddWithValue("@2", 1);
-						cmd.Parameters.AddWithValue("@3", s.Id);
-						cmd.Parameters.AddWithValue("@4", DataServer.ArrItemTemplate[s.Id].IdClass);
-						cmd.Parameters.AddWithValue("@5", DataServer.ArrItemTemplate[s.Id].GioiTinh);
+						cmd.Parameters.AddWithValue("@3", s.id);
+						cmd.Parameters.AddWithValue("@4", DataServer.ArrItemTemplate[s.id].id_class);
+						cmd.Parameters.AddWithValue("@5", DataServer.ArrItemTemplate[s.id].gioi_tinh);
 						cmd.Parameters.AddWithValue("@6", 1);
 						cmd.Parameters.AddWithValue("@7", -1);
 						cmd.Parameters.AddWithValue("@8", 0);
@@ -903,11 +904,11 @@ namespace LangLa.SqlConnection
 							{
 								k *= j;
 							}
-							DataServer.ArrItemTemplate.Where((ItemTemplate s) => s.Type == TypeShow).ToList().ForEach(delegate(ItemTemplate s)
+							DataServer.ArrItemTemplate.Where(s => s.type == TypeShow).ToList().ForEach(delegate(item_template s)
 							{
 								cmd.Parameters.AddWithValue("@1", 1);
 								cmd.Parameters.AddWithValue("@2", x);
-								cmd.Parameters.AddWithValue("@3", s.Id);
+								cmd.Parameters.AddWithValue("@3", s.id);
 								cmd.Parameters.AddWithValue("@4", i);
 								cmd.Parameters.AddWithValue("@5", 2);
 								cmd.Parameters.AddWithValue("@6", 1);
@@ -1017,13 +1018,13 @@ namespace LangLa.SqlConnection
 								k *= j;
 							}
 							Util.ShowLog("L " + k);
-							DataServer.ArrItemTemplate.Where((ItemTemplate s) => s.Type == TypeShow).ToList().ForEach(delegate(ItemTemplate s)
+							DataServer.ArrItemTemplate.Where(s => s.type == TypeShow).ToList().ForEach(delegate(item_template s)
 							{
 								cmd.Parameters.AddWithValue("@1", 1);
 								cmd.Parameters.AddWithValue("@2", x);
-								cmd.Parameters.AddWithValue("@3", s.Id);
+								cmd.Parameters.AddWithValue("@3", s.id);
 								cmd.Parameters.AddWithValue("@4", i);
-								cmd.Parameters.AddWithValue("@5", DataServer.ArrItemTemplate[s.Id].GioiTinh);
+								cmd.Parameters.AddWithValue("@5", DataServer.ArrItemTemplate[s.id].gioi_tinh);
 								cmd.Parameters.AddWithValue("@6", 1);
 								cmd.Parameters.AddWithValue("@7", -1);
 								cmd.Parameters.AddWithValue("@8", 0);
@@ -1035,7 +1036,7 @@ namespace LangLa.SqlConnection
 								cmd.ExecuteNonQuery();
 								cmd.Parameters.Clear();
 								cmd.CommandText = Text;
-								Util.ShowLog("NAME " + DataServer.ArrItemTemplate[s.Id].Name + " OPION " + MoneyPhuKienDTMSOT[c]);
+								Util.ShowLog("NAME " + DataServer.ArrItemTemplate[s.id].name + " OPION " + MoneyPhuKienDTMSOT[c]);
 								int num = c;
 								c = num + 1;
 								if (MoneyShopPhuKien.Length - 1 <= c)
@@ -1136,7 +1137,7 @@ namespace LangLa.SqlConnection
 				cmd.Parameters.AddWithValue("@3", Id);
 				cmd.Parameters.AddWithValue("@4", Quantity);
 				cmd.Parameters.AddWithValue("@5", -1);
-				cmd.Parameters.AddWithValue("@6", DataServer.ArrItemTemplate[Id].GioiTinh);
+				cmd.Parameters.AddWithValue("@6", DataServer.ArrItemTemplate[Id].gioi_tinh);
 				cmd.Parameters.AddWithValue("@7", 1);
 				cmd.Parameters.AddWithValue("@8", -1);
 				cmd.Parameters.AddWithValue("@9", 0);
@@ -1208,18 +1209,18 @@ namespace LangLa.SqlConnection
 			using MySqlConnection con = Connection.getConnection();
 			con.Open();
 			using MySqlCommand cmd = con.CreateCommand();
-			List<ItemTemplate> itemTemplates = DataServer.ArrItemTemplate.Where((ItemTemplate s) => s.IdClass > 0 && s.Type == 11).ToList();
-			itemTemplates = itemTemplates.OrderBy((ItemTemplate s) => s.IdClass).ToList();
+			List<item_template> itemTemplates = DataServer.ArrItemTemplate.Where(s => s.id_class > 0 && s.type == 11).ToList();
+			itemTemplates = itemTemplates.OrderBy(s => s.id_class).ToList();
 			int x = 0;
 			for (int i = 0; i < itemTemplates.Count; i++)
 			{
 				cmd.CommandText = Text;
 				cmd.Parameters.AddWithValue("@1", 1);
 				cmd.Parameters.AddWithValue("@2", 19);
-				cmd.Parameters.AddWithValue("@3", itemTemplates[i].Id);
+				cmd.Parameters.AddWithValue("@3", itemTemplates[i].id);
 				cmd.Parameters.AddWithValue("@4", 1);
-				cmd.Parameters.AddWithValue("@5", itemTemplates[i].IdClass);
-				cmd.Parameters.AddWithValue("@6", itemTemplates[i].GioiTinh);
+				cmd.Parameters.AddWithValue("@5", itemTemplates[i].id_class);
+				cmd.Parameters.AddWithValue("@6", itemTemplates[i].gioi_tinh);
 				cmd.Parameters.AddWithValue("@7", 1);
 				cmd.Parameters.AddWithValue("@8", -1);
 				cmd.Parameters.AddWithValue("@9", DataShop.BuyTinhThachBiKip[x]);
@@ -1285,7 +1286,7 @@ namespace LangLa.SqlConnection
 			Util.ShowLog("DONE ");
 			using MySqlConnection con = Connection.getConnection();
 			sbyte TypeFind = -1;
-			List<ItemTemplate> itemTemplates = null;
+			List<item_template> itemTemplates = null;
 			con.Open();
 			short ValueCt = 5;
 			short TinhThachBuyCaiTrang = 500;
@@ -1298,19 +1299,19 @@ namespace LangLa.SqlConnection
 				{
 				case 18:
 					TypeFind = 12;
-					itemTemplates = DataServer.ArrItemTemplate.Where((ItemTemplate s) => s.LevelNeed >= 15 && s.GioiTinh == 2 && s.Type == TypeFind && s.IdClass == 0).ToList();
-					itemTemplates = itemTemplates.OrderBy((ItemTemplate s) => s.LevelNeed).ToList();
+					itemTemplates = DataServer.ArrItemTemplate.Where(s => s.level_need >= 15 && s.gioi_tinh == 2 && s.type == TypeFind && s.id_class == 0).ToList();
+					itemTemplates = itemTemplates.OrderBy(s => s.level_need).ToList();
 					break;
 				case 30:
-					itemTemplates = DataServer.ArrItemTemplate.Where((ItemTemplate s) => s.Id == 570 || s.Id == 237 || s.Id == 703).ToList();
+					itemTemplates = DataServer.ArrItemTemplate.Where(s => s.id == 570 || s.id == 237 || s.id == 703).ToList();
 					break;
 				case 19:
-					itemTemplates = DataServer.ArrItemTemplate.Where((ItemTemplate s) => s.IdClass > 0 && s.Type == 11).ToList();
-					itemTemplates = itemTemplates.OrderBy((ItemTemplate s) => s.IdClass).ToList();
+					itemTemplates = DataServer.ArrItemTemplate.Where(s => s.id_class > 0 && s.type == 11).ToList();
+					itemTemplates = itemTemplates.OrderBy(s => s.id_class).ToList();
 					break;
 				case 37:
-					itemTemplates = DataServer.ArrItemTemplate.Where((ItemTemplate s) => s.GioiTinh == 2 && s.Type == 10 && s.IdClass == 0).ToList();
-					itemTemplates = itemTemplates.OrderBy((ItemTemplate s) => s.LevelNeed).ToList();
+					itemTemplates = DataServer.ArrItemTemplate.Where(s => s.gioi_tinh == 2 && s.type == 10 && s.id_class == 0).ToList();
+					itemTemplates = itemTemplates.OrderBy(s => s.level_need).ToList();
 					break;
 				}
 				short Size = (short)((Type != 38) ? itemTemplates.Count : DataShop.IdCaiTrangShop.Length);
@@ -1330,17 +1331,17 @@ namespace LangLa.SqlConnection
 					switch (Type)
 					{
 					case 30:
-						IdItem = itemTemplates[x].Id;
-						IdClass = itemTemplates[x].IdClass;
-						GioiTinh = itemTemplates[x].GioiTinh;
+						IdItem = itemTemplates[x].id;
+						IdClass = itemTemplates[x].id_class;
+						GioiTinh = itemTemplates[x].gioi_tinh;
 						break;
 					case 38:
 						IdItem = DataShop.IdCaiTrangShop[j];
 						break;
 					default:
-						IdItem = itemTemplates[j].Id;
-						IdClass = itemTemplates[j].IdClass;
-						GioiTinh = itemTemplates[j].GioiTinh;
+						IdItem = itemTemplates[j].id;
+						IdClass = itemTemplates[j].id_class;
+						GioiTinh = itemTemplates[j].gioi_tinh;
 						break;
 					}
 					switch (Type)

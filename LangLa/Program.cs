@@ -17,8 +17,8 @@ namespace LangLa
             IConfigurationRoot Configuration = null;
             Setup.BuildConfig(ref Configuration);
             AppSettings = Setup.GetConfigurationServer(Configuration);
-            DataServer.DataGame();
             ConnectionItem.LoadItemTemplate();
+            DataServer.DataGame();
             ConnectionDB.LoadGiaToc();
             ConnectionDB.LoadShop();
             ConnectionDB.LoadTop();

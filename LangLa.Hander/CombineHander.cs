@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Text;
 using LangLa.Data;
 using LangLa.IO;
+using LangLa.Model;
 using LangLa.OOP;
 using LangLa.Server;
 using LangLa.SupportOOP;
@@ -272,12 +273,12 @@ namespace LangLa.Hander
 				_myChar.Info.PointCuongHoa += ((BacNangCap / 10 >= 0) ? (BacNangCap / 10) : 0);
 				if (itemNangCap.Level >= 15)
 				{
-					LangLa.Server.Server.SendThongBaoFromServer("Chúc mừng nhẫn giả " + _myChar.Info.Name + " vừa cường hóa trang bị " + DataServer.ArrItemTemplate[itemNangCap.Id].Name + "+" + itemNangCap.Level);
+					LangLa.Server.Server.SendThongBaoFromServer("Chúc mừng nhẫn giả " + _myChar.Info.Name + " vừa cường hóa trang bị " + DataServer.ArrItemTemplate[itemNangCap.Id].name + "+" + itemNangCap.Level);
 				}
 			}
 			else if (itemNangCap.Level >= 15)
 			{
-				LangLa.Server.Server.SendThongBaoFromServer("Nhẫn giả " + _myChar.Info.Name + " vừa cường hóa thất bại trang bị " + DataServer.ArrItemTemplate[itemNangCap.Id].Name + " +" + (itemNangCap.Level + 1));
+				LangLa.Server.Server.SendThongBaoFromServer("Nhẫn giả " + _myChar.Info.Name + " vừa cường hóa thất bại trang bị " + DataServer.ArrItemTemplate[itemNangCap.Id].name + " +" + (itemNangCap.Level + 1));
 			}
 			_myChar.SendMessage(MsgCuongHoa(IsThanhCong, var1: false, _myChar.Inventory.Bac, _myChar.Inventory.BacKhoa, IndexDa, itemNangCap, TypeTemp, Index2));
 		}
@@ -502,8 +503,8 @@ namespace LangLa.Hander
 			}
 			sbyte MaxNgocKham = 1;
 			string[] OptionsCheck = ItemKham.Options.Split(";");
-			ItemTemplate itemTemplate = DataServer.ArrItemTemplate[ItemKham.Id];
-			MaxNgocKham = ((itemTemplate.LevelNeed >= 50) ? ((sbyte)(MaxNgocKham + 4)) : ((itemTemplate.LevelNeed < 40) ? ((sbyte)(MaxNgocKham + (sbyte)((itemTemplate.LevelNeed < 30) ? 1 : 2))) : ((sbyte)(MaxNgocKham + 3))));
+			item_template itemTemplate = DataServer.ArrItemTemplate[ItemKham.Id];
+			MaxNgocKham = ((itemTemplate.level_need >= 50) ? ((sbyte)(MaxNgocKham + 4)) : ((itemTemplate.level_need < 40) ? ((sbyte)(MaxNgocKham + (sbyte)((itemTemplate.level_need < 30) ? 1 : 2))) : ((sbyte)(MaxNgocKham + 3))));
 			sbyte Count = 0;
 			for (int n = 0; n < OptionsCheck.Length; n++)
 			{
@@ -865,14 +866,14 @@ namespace LangLa.Hander
 			{
 				return;
 			}
-			ItemTemplate itemTemplate = DataServer.ArrItemTemplate[item.Id];
+			item_template itemTemplate = DataServer.ArrItemTemplate[item.Id];
 			int BacUp = 15000000;
-			int QuantityUp = itemTemplate.LevelNeed / 10 * 100;
-			if (itemTemplate.LevelNeed / 10 == 5)
+			int QuantityUp = itemTemplate.level_need / 10 * 100;
+			if (itemTemplate.level_need / 10 == 5)
 			{
 				BacUp = 20000000;
 			}
-			else if (itemTemplate.LevelNeed / 10 == 6)
+			else if (itemTemplate.level_need / 10 == 6)
 			{
 				BacUp = 40000000;
 				QuantityUp = 700;
@@ -883,9 +884,9 @@ namespace LangLa.Hander
 			}
 			else if (Quantity < QuantityUp)
 			{
-				_myChar.SendMessage(UtilMessage.SendThongBao("Không đủ " + DataServer.ArrItemTemplate[_myChar.Inventory.ItemBag[IndexNgoc[0]].Id].Name, Util.YELLOW_MID));
+				_myChar.SendMessage(UtilMessage.SendThongBao("Không đủ " + DataServer.ArrItemTemplate[_myChar.Inventory.ItemBag[IndexNgoc[0]].Id].name, Util.YELLOW_MID));
 			}
-			else if (_myChar.Inventory.ItemBag[IndexNgoc[0]].Id == 565 && itemTemplate.LevelNeed >= 40)
+			else if (_myChar.Inventory.ItemBag[IndexNgoc[0]].Id == 565 && itemTemplate.level_need >= 40)
 			{
 				string Options = item.Options;
 				if (TypeTemp == 2)
@@ -903,7 +904,7 @@ namespace LangLa.Hander
 				}
 				InventoryHander.UpdateBac(_myChar, BacUp, ThongBao: true);
 				_myChar.SendMessage(MsgUpVuKhiHienNhan(item, TypeTemp, IndexNgoc));
-				LangLa.Server.Server.SendThongBaoFromServer("Nhẫn giả " + _myChar.Info.Name + " vừa cường hóa thành công " + itemTemplate.Name + " trở thành trang bị Sharingan");
+				LangLa.Server.Server.SendThongBaoFromServer("Nhẫn giả " + _myChar.Info.Name + " vừa cường hóa thành công " + itemTemplate.name + " trở thành trang bị Sharingan");
 			}
 		}
 
@@ -914,14 +915,14 @@ namespace LangLa.Hander
 			{
 				return;
 			}
-			ItemTemplate itemTemplate = DataServer.ArrItemTemplate[item.Id];
+			item_template itemTemplate = DataServer.ArrItemTemplate[item.Id];
 			int BacUp = 25000000;
-			int QuantityUp = itemTemplate.LevelNeed / 10 * 100;
-			if (itemTemplate.LevelNeed / 10 == 5)
+			int QuantityUp = itemTemplate.level_need / 10 * 100;
+			if (itemTemplate.level_need / 10 == 5)
 			{
 				BacUp = 30000000;
 			}
-			else if (itemTemplate.LevelNeed / 10 == 6)
+			else if (itemTemplate.level_need / 10 == 6)
 			{
 				BacUp = 40000000;
 				QuantityUp = 700;
@@ -932,9 +933,9 @@ namespace LangLa.Hander
 			}
 			else if (Quantity < QuantityUp)
 			{
-				_myChar.SendMessage(UtilMessage.SendThongBao("Không đủ " + DataServer.ArrItemTemplate[_myChar.Inventory.ItemBag[IndexNgoc[0]].Id].Name, Util.YELLOW_MID));
+				_myChar.SendMessage(UtilMessage.SendThongBao("Không đủ " + DataServer.ArrItemTemplate[_myChar.Inventory.ItemBag[IndexNgoc[0]].Id].name, Util.YELLOW_MID));
 			}
-			else if (_myChar.Inventory.ItemBag[IndexNgoc[0]].Id == 567 && itemTemplate.LevelNeed >= 40)
+			else if (_myChar.Inventory.ItemBag[IndexNgoc[0]].Id == 567 && itemTemplate.level_need >= 40)
 			{
 				string Optionback = item.Options;
 				if (TypeTemp == 2)
@@ -952,7 +953,7 @@ namespace LangLa.Hander
 				}
 				InventoryHander.UpdateBac(_myChar, BacUp, ThongBao: true);
 				_myChar.SendMessage(MsgUpVuKhiHienNhan(item, TypeTemp, IndexNgoc));
-				LangLa.Server.Server.SendThongBaoFromServer("Nhẫn giả " + _myChar.Info.Name + " vừa cường hóa thành công " + itemTemplate.Name + " trở thành trang bị RinneGan");
+				LangLa.Server.Server.SendThongBaoFromServer("Nhẫn giả " + _myChar.Info.Name + " vừa cường hóa thành công " + itemTemplate.name + " trở thành trang bị RinneGan");
 			}
 		}
 
@@ -963,14 +964,14 @@ namespace LangLa.Hander
 			{
 				return;
 			}
-			ItemTemplate itemTemplate = DataServer.ArrItemTemplate[item.Id];
+			item_template itemTemplate = DataServer.ArrItemTemplate[item.Id];
 			int BacUp = 25000000;
-			int QuantityUp = itemTemplate.LevelNeed / 10 * 100;
-			if (itemTemplate.LevelNeed / 10 == 5)
+			int QuantityUp = itemTemplate.level_need / 10 * 100;
+			if (itemTemplate.level_need / 10 == 5)
 			{
 				BacUp = 30000000;
 			}
-			else if (itemTemplate.LevelNeed / 10 == 6)
+			else if (itemTemplate.level_need / 10 == 6)
 			{
 				BacUp = 40000000;
 				QuantityUp = 700;
@@ -981,9 +982,9 @@ namespace LangLa.Hander
 			}
 			else if (Quantity < QuantityUp)
 			{
-				_myChar.SendMessage(UtilMessage.SendThongBao("Không đủ " + DataServer.ArrItemTemplate[_myChar.Inventory.ItemBag[IndexNgoc[0]].Id].Name, Util.YELLOW_MID));
+				_myChar.SendMessage(UtilMessage.SendThongBao("Không đủ " + DataServer.ArrItemTemplate[_myChar.Inventory.ItemBag[IndexNgoc[0]].Id].name, Util.YELLOW_MID));
 			}
-			else if (_myChar.Inventory.ItemBag[IndexNgoc[0]].Id == 563 && itemTemplate.LevelNeed >= 40)
+			else if (_myChar.Inventory.ItemBag[IndexNgoc[0]].Id == 563 && itemTemplate.level_need >= 40)
 			{
 				string Optionback = item.Options;
 				if (TypeTemp == 2)
@@ -1001,7 +1002,7 @@ namespace LangLa.Hander
 				}
 				InventoryHander.UpdateBac(_myChar, BacUp, ThongBao: true);
 				_myChar.SendMessage(MsgUpVuKhiHienNhan(item, TypeTemp, IndexNgoc));
-				LangLa.Server.Server.SendThongBaoFromServer("Nhẫn giả " + _myChar.Info.Name + " vừa cường hóa thành công " + itemTemplate.Name + " trở thành trang bị Byakugan");
+				LangLa.Server.Server.SendThongBaoFromServer("Nhẫn giả " + _myChar.Info.Name + " vừa cường hóa thành công " + itemTemplate.name + " trở thành trang bị Byakugan");
 			}
 		}
 
@@ -1021,30 +1022,30 @@ namespace LangLa.Hander
 			{
 				return;
 			}
-			ItemTemplate itemTemplate = DataServer.ArrItemTemplate[itemUp.Id];
+			item_template itemTemplate = DataServer.ArrItemTemplate[itemUp.Id];
 			short IdNgoc = _myChar.Inventory.ItemBag[IndexNgoc[0]].Id;
-			if (itemTemplate.Type == 1 && IdNgoc != 353)
+			if (itemTemplate.type == 1 && IdNgoc != 353)
 			{
 				_myChar.SendMessage(UtilMessage.SendThongBao("Yêu cầu Ngọc Myoboku", Util.YELLOW_MID));
 				return;
 			}
-			if ((itemTemplate.Type == 5 || itemTemplate.Type == 6 || itemTemplate.Type == 9) && IdNgoc != 563)
+			if ((itemTemplate.type == 5 || itemTemplate.type == 6 || itemTemplate.type == 9) && IdNgoc != 563)
 			{
 				_myChar.SendMessage(UtilMessage.SendThongBao("Yêu cầu Ngọc Byakugan", Util.YELLOW_MID));
 				return;
 			}
-			if ((itemTemplate.Type == 2 || itemTemplate.Type == 7 || itemTemplate.Type == 8) && IdNgoc != 565)
+			if ((itemTemplate.type == 2 || itemTemplate.type == 7 || itemTemplate.type == 8) && IdNgoc != 565)
 			{
 				_myChar.SendMessage(UtilMessage.SendThongBao("Yêu cầu Ngọc Sharingan", Util.YELLOW_MID));
 				return;
 			}
-			if ((itemTemplate.Type == 0 || itemTemplate.Type == 4 || itemTemplate.Type == 3) && IdNgoc != 567)
+			if ((itemTemplate.type == 0 || itemTemplate.type == 4 || itemTemplate.type == 3) && IdNgoc != 567)
 			{
 				_myChar.SendMessage(UtilMessage.SendThongBao("Yêu cầu Ngọc Rinnegan", Util.YELLOW_MID));
 				return;
 			}
-			int QuantityUp = itemTemplate.LevelNeed / 10 * 10 + 150;
-			int BacUp = itemTemplate.LevelNeed / 10 * 10000000 + 15000000;
+			int QuantityUp = itemTemplate.level_need / 10 * 10 + 150;
+			int BacUp = itemTemplate.level_need / 10 * 10000000 + 15000000;
 			if (_myChar.Inventory.Bac < BacUp)
 			{
 				_myChar.SendMessage(UtilMessage.SendThongBao("Không đủ bạc khóa", Util.YELLOW_MID));
@@ -1052,7 +1053,7 @@ namespace LangLa.Hander
 			}
 			if (Quantity < QuantityUp)
 			{
-				_myChar.SendMessage(UtilMessage.SendThongBao("Không đủ " + DataServer.ArrItemTemplate[_myChar.Inventory.ItemBag[IndexNgoc[0]].Id].Name, Util.YELLOW_MID));
+				_myChar.SendMessage(UtilMessage.SendThongBao("Không đủ " + DataServer.ArrItemTemplate[_myChar.Inventory.ItemBag[IndexNgoc[0]].Id].name, Util.YELLOW_MID));
 				return;
 			}
 			InventoryHander.UpdateBackhoa(_myChar, BacUp);
@@ -1080,14 +1081,14 @@ namespace LangLa.Hander
 			{
 				return;
 			}
-			ItemTemplate itemTemplate = DataServer.ArrItemTemplate[item.Id];
+			item_template itemTemplate = DataServer.ArrItemTemplate[item.Id];
 			int BacUp = 25000000;
-			int QuantityUp = itemTemplate.LevelNeed / 10 * 100;
-			if (itemTemplate.LevelNeed / 10 == 5)
+			int QuantityUp = itemTemplate.level_need / 10 * 100;
+			if (itemTemplate.level_need / 10 == 5)
 			{
 				BacUp = 30000000;
 			}
-			else if (itemTemplate.LevelNeed / 10 == 6)
+			else if (itemTemplate.level_need / 10 == 6)
 			{
 				BacUp = 40000000;
 				QuantityUp = 700;
@@ -1098,9 +1099,9 @@ namespace LangLa.Hander
 			}
 			else if (Quantity < QuantityUp)
 			{
-				_myChar.SendMessage(UtilMessage.SendThongBao("Không đủ " + DataServer.ArrItemTemplate[_myChar.Inventory.ItemBag[IndexNgoc[0]].Id].Name, Util.YELLOW_MID));
+				_myChar.SendMessage(UtilMessage.SendThongBao("Không đủ " + DataServer.ArrItemTemplate[_myChar.Inventory.ItemBag[IndexNgoc[0]].Id].name, Util.YELLOW_MID));
 			}
-			else if (_myChar.Inventory.ItemBag[IndexNgoc[0]].Id == 353 && itemTemplate.LevelNeed >= 40)
+			else if (_myChar.Inventory.ItemBag[IndexNgoc[0]].Id == 353 && itemTemplate.level_need >= 40)
 			{
 				string Options = item.Options;
 				if (TypeTemp == 2)
@@ -1118,7 +1119,7 @@ namespace LangLa.Hander
 				}
 				InventoryHander.UpdateBac(_myChar, BacUp, ThongBao: true);
 				_myChar.SendMessage(MsgUpVuKhiHienNhan(item, TypeTemp, IndexNgoc));
-				LangLa.Server.Server.SendThongBaoFromServer("Nhẫn giả " + _myChar.Info.Name + " vừa cường hóa thành công " + itemTemplate.Name + " trở thành trang bị HienNhan");
+				LangLa.Server.Server.SendThongBaoFromServer("Nhẫn giả " + _myChar.Info.Name + " vừa cường hóa thành công " + itemTemplate.name + " trở thành trang bị HienNhan");
 			}
 		}
 	}

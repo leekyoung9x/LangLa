@@ -1,6 +1,7 @@
 using System.Text;
 using LangLa.Data;
 using LangLa.IO;
+using LangLa.Model;
 using LangLa.Template;
 
 namespace LangLa.SupportOOP
@@ -52,15 +53,15 @@ namespace LangLa.SupportOOP
 			this.IsLock = IsLock;
 			this.Quantity = Quantity;
 			this.Options = Options;
-			ItemTemplate itemTemplate = DataServer.ArrItemTemplate[Id];
-			Type = itemTemplate.Type;
-			IsCongDon = itemTemplate.IsCongDon;
+			item_template itemTemplate = DataServer.ArrItemTemplate[Id];
+			Type = itemTemplate.type;
+			IsCongDon = itemTemplate.is_cong_don;
 			if (SetOptionAuto && Type <= 16)
 			{
 				switch (Type)
 				{
 				case 0:
-					setOptionsVuKhi(DataServer.ArrItemTemplate[Id].LevelNeed);
+					setOptionsVuKhi(DataServer.ArrItemTemplate[Id].level_need);
 					break;
 				case 16:
 					AddOption(340, Id);

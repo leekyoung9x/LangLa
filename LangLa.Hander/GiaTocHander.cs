@@ -354,7 +354,7 @@ namespace LangLa.Hander
 			}
 			short Id = _myChar.InfoGame.GiaToc.ItemGiaToc[Index].Id;
 			int Quantity = _myChar.InfoGame.GiaToc.ItemGiaToc[Index].Quantity;
-			string Text = "Tộc trưởng " + _myChar.Info.Name + " đã phân phát " + DataServer.ArrItemTemplate[Id].Name + " cho toàn bộ thành viên gia tộc";
+			string Text = "Tộc trưởng " + _myChar.Info.Name + " đã phân phát " + DataServer.ArrItemTemplate[Id].name + " cho toàn bộ thành viên gia tộc";
 			_myChar.InfoGame.GiaToc.AddLogGiaToc(Text);
 			foreach (GiaTocTemplate.ThanhVienGiaToc c in _myChar.InfoGame.GiaToc.ThanhViens)
 			{

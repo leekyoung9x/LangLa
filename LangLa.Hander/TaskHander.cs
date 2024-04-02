@@ -42,7 +42,7 @@ namespace LangLa.Hander
 					}
 					break;
 				case 8:
-					if (_myChar2.Task.IdStep == 9 && item.Id == DataServer.ArrItemTemplate.FirstOrDefault((ItemTemplate s) => s.IdClass == _myChar2.Info.IdClass && s.Type == 1 && s.LevelNeed == 10).Id)
+					if (_myChar2.Task.IdStep == 9 && item.Id == DataServer.ArrItemTemplate.FirstOrDefault(s => s.id_class == _myChar2.Info.IdClass && s.type == 1 && s.level_need == 10).id)
 					{
 						NextStep(_myChar2);
 					}
@@ -447,7 +447,7 @@ namespace LangLa.Hander
 			Character _myChar2 = _myChar;
 			if (_myChar2.Task.Id == 8 && _myChar2.Task.IdStep == 8)
 			{
-				Item it = new Item(DataServer.ArrItemTemplate.FirstOrDefault((ItemTemplate s) => s.IdClass == _myChar2.Info.IdClass && s.Type == 1 && s.LevelNeed == 10).Id, IsLock: true, SetOptionAuto: false);
+				Item it = new Item(DataServer.ArrItemTemplate.FirstOrDefault(s => s.id_class == _myChar2.Info.IdClass && s.type == 1 && s.level_need == 10).id, IsLock: true, SetOptionAuto: false);
 				it.IdClass = _myChar2.Info.IdClass;
 				it.AddOption(2, 100);
 				it.AddOption(3, 30);
